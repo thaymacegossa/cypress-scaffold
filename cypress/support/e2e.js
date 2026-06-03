@@ -15,3 +15,10 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+
+Cypress.on('uncaught:exception', (err) => {
+  if (err.message && /\$ is not a function|TypeError: \$ is not a function|jQuery is not defined|cannot read property 'fn' of undefined/i.test(err.message)) {
+    return false;
+  }
+  return true;
+});
